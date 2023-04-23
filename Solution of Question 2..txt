@@ -1,0 +1,16 @@
+In the code first error that i acquired is 
+
+1 .in prop of "WrappedListComponent" , which is an incorrect protype , as an array is a primitive data type, we have to use      	the "protypes.arrayOf". 
+	so it should be like:-
+
+	items: PropTypes.arrayOf(PropTypes.shape({
+ 	text: PropTypes.string.isRequired,
+	})),
+
+2. The second is in the SingleListComponet as it unnecessarily re-rednder itself every time the state is updateed. It can be fixed using "useCallback".
+
+3. The items prop of the ListComponent is being set to null by default, which is not ideal. It should be set to an empty array instead.
+
+4. Need to add a key prop to the "SingleListItem" component when it is required inside the map function.
+
+

@@ -1,0 +1,64 @@
+
+
+import React, { useState, useEffect, useCallback } from 'react';
+import PropTypes from 'prop-types';
+
+// Single List Item
+const SingleListItem = ({ index, isSelected, onClickHandler, text }) => {
+  return (
+    <li style={{ backgroundColor: isSelected ? 'green' : 'red' }} onClick={onClickHandler}>
+      {text}
+    </li>
+  );
+};
+
+SingleListItem.propTypes = {
+  index: PropTypes.number.isRequired,
+  isSelected: PropTypes.bool.isRequired,
+  onClickHandler: PropTypes.func.isRequired,
+  text: PropTypes.string.isRequired,
+};
+
+// List Component
+const List = ({ items }) => {
+  const [selectedIndex, setSelectedIndex] = useState(null);
+
+  useEffect(() => {
+    setSelectedIndex(null);
+  }, [items]);
+
+  const handleClick = useCallback(
+    (index) => {
+      setSelectedIndex(index);
+    },
+    [setSelectedIndex]
+  );
+
+  return (
+    <ul style={{ textAlign: 'left' }}>
+      {items &&
+        items.map(({ text }, index) => (
+          <SingleListItem
+            key={index}
+            index={index}
+            isSelected={selectedIndex === index}
+            onClickHandler={() => handleClick(index)}
+            text={text}
+          />
+        ))}
+    </ul>
+  );
+};
+
+List.propTypes = {
+  items: PropTypes.arrayOf(
+    PropTypes.shape({
+      text: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+};
+
+export default List;
+```
+
+

@@ -1,0 +1,13 @@
+The simple list component , is used to create a list of items based on an array of object which is passed in a proptypes.
+It does this by rendering a un-odered list, which contains a number of single list items component.
+This take following propstypes as input :- 
+text := a string representing the text to be rendered inside the list item
+index := a number representing the index of the item in the list
+isSelected := a boolean representing whether the item is selected or not
+onClickHandler  a function to be called when the item is clicked
+
+When any user click on the list item , the compond update the "isSelected" state of the corresponding item to the value true.
+and also sets the background color of the clikced list item to color green and rest which are not selected have a background color red.
+
+In the code the "WrappedListComponent" maps each item in the items prop and also create a "Single List Item" component for each one of the items. Than it passes down the dunction "onClickHandle" , text and the idex props to "SingleListItem" and also passed down the "isSelected  state based on whethere the items index matches the selectIndex state.
+
